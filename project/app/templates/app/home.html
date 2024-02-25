@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>tweet automator by onursevil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="{% url 'post_tweet' %}">
+        {% csrf_token %}
+        <h1>Post a Tweet</h1>
+        <textarea name="tweet"></textarea>
+        
+        <label for="tweetTime">Schedule Tweet for:</label>
+        <input type="datetime-local" id="tweetTime" name="tweetTime">
+
+        <label for="tweetFrequency">Tweet Frequency:</label>
+        <select name="tweetFrequency" id="tweetFrequency">
+            <option value="once">once</option>
+            <option value="1_day">1 Day</option>
+            <option value="2_days">2 Days</option>
+            <option value="3_days">3 Days</option>
+            <option value="1_week">7 Days (1 Week)</option>
+            <option value="2_weeks">2 Weeks</option>
+            <option value="1_month">1 Month</option>
+        </select>
+
+        <button type="submit">Tweet</button>
+    </form>
+</body>
+</html>
